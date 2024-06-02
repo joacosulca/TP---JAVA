@@ -1,0 +1,33 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class ej4 
+{
+
+    public static void main(String[] args) 
+    {
+        //en esta primera parte se crea la lista de nombres
+        ArrayList<String> nombres = new ArrayList<>();
+        
+        //hacemos un Scanner para que lea la entrada, osea los nombres que ingresaremos
+        Scanner scanner = new Scanner(System.in);
+        
+        //le pedimos al usuario que ingrese los nombres
+        System.out.println("Ingrese los nombres (Ingrese 'fin' para terminar):");
+        String nombre = scanner.nextLine();
+        
+        //hacemos un while para que el usuario ingrese nombres hasta que ponga "fin"
+        while (!nombre.equalsIgnoreCase("fin")) 
+        {
+            nombres.add(nombre);
+            nombre = scanner.nextLine();
+        }
+        
+        //aca es donde utilizamos el for-each para que recorra todos los nombres ingresados y luego los muestre en pantalla
+        System.out.println("Los nombres ingresados son:");
+        for (String nombreActual : nombres) 
+        {
+            System.out.println(nombreActual);
+        }
+    }
+}
