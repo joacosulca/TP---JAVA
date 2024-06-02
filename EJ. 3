@@ -1,0 +1,29 @@
+import java.util.Scanner;
+
+public class ej3 
+{
+	public static void main(String[] args) 
+	{
+		int count,num;
+		Scanner scan = new Scanner(System.in);
+		
+		do
+		{
+			count=0;
+			System.out.println("Ingrese un numero");
+			num = scan.nextInt();
+			
+			for(int x=1;x<=num;x++) 
+			{
+				if(num%x==0) 
+				{
+					count++;
+				}
+			}
+			
+		}while(!(num>100 && count==2));
+		
+		System.out.println("Correcto. Numero mayor a 100 y primo");
+		
+	}
+}
