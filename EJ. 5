@@ -1,0 +1,121 @@
+import java.util.Scanner;
+import java.util.List;
+import java.util.ArrayList;
+
+public class ej5 
+{
+
+    public static double resolver(String calculo) 
+    {
+        List<String> calculos = new ArrayList<>();
+        List<Character> operaciones = new ArrayList<>();
+        
+        int terminoIndice = 0;
+        for (int x = 0; x < calculo.length(); x++) 
+        {
+            if (calculo.charAt(x) == 'x' || calculo.charAt(x) == '/') 
+            {
+                String calculito = calculo.substring(terminoIndice, x);
+                terminoIndice = x + 1;
+                calculos.add(calculito);
+                operaciones.add(calculo.charAt(x));
+            }
+            if (x + 1 == calculo.length()) 
+            {
+                calculos.add(calculo.substring(terminoIndice, x + 1));
+            }
+        }
+
+        double resultado = 0;
+        try 
+        {
+            if (!calculos.isEmpty()) 
+            {
+                resultado = Double.parseDouble(calculos.get(0));
+            }
+            for (int i = 0; i < operaciones.size(); i++) 
+            {
+                double siguienteNumero = Double.parseDouble(calculos.get(i + 1));
+                char operacion = operaciones.get(i);
+                if (operacion == 'x') 
+                {
+                    resultado *= siguienteNumero;
+                } 
+                else if (operacion == '/') 
+                {
+                    resultado /= siguienteNumero;
+                }
+            }
+        } 
+        catch (NumberFormatException e) 
+        {
+            System.out.println("Error sintáctico: " + e.getMessage());
+        }
+        
+        return resultado;
+    }
+
+    public static void main(String[] args) 
+    {
+        System.out.println("- Calculadora -");
+
+        Scanner scan = new Scanner(System.in);
+        List<String> calculos = new ArrayList<>();
+        List<Character> operaciones = new ArrayList<>();
+
+        System.out.println("");
+        String calculo = scan.nextLine();
+
+        int terminoIndice = 0;
+
+        for (int x = 0; x < calculo.length(); x++) 
+        {
+            if (calculo.charAt(x) == '+' || calculo.charAt(x) == '-') 
+            {
+                String calculito = calculo.substring(terminoIndice, x);
+                terminoIndice = x + 1;
+                calculos.add(calculito);
+                operaciones.add(calculo.charAt(x));
+            }
+            if (x + 1 == calculo.length()) 
+            {
+                calculos.add(calculo.substring(terminoIndice, x + 1));
+            }
+        }
+
+        
+        for (int i = 0; i < calculos.size(); i++) 
+        {
+            String termino = calculos.get(i);
+            if (termino.contains("x") || termino.contains("/")) 
+            {
+                double resultado = resolver(termino);
+                calculos.set(i, String.valueOf(resultado));
+            }
+        }
+
+        
+        double resultadoFinal = 0;
+        try {
+            if (!calculos.isEmpty()) {
+                resultadoFinal = Double.parseDouble(calculos.get(0));
+            }
+            for (int i = 0; i < operaciones.size(); i++) {
+                double siguienteNumero = Double.parseDouble(calculos.get(i + 1));
+                char operacion = operaciones.get(i);
+                if (operacion == '+') {
+                    resultadoFinal += siguienteNumero;
+                } else if (operacion == '-') {
+                    resultadoFinal -= siguienteNumero;
+                }
+            }
+        } catch (NumberFormatException e) {
+            System.out.println("Error sintáctico: " + e.getMessage());
+        }
+
+        System.out.println("\n\n\n\n\n\n " + resultadoFinal);
+
+        scan.close();
+    }
+
+}
