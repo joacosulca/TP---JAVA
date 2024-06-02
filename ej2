@@ -1,0 +1,23 @@
+public class ej2 {
+	public static void main(String[] args) {
+		System.out.println("Numeros del 50 al 100");
+		int count = 0;
+		
+		for(int y=50; y<=100; y++)
+		{
+			count=0;
+		for(int x=1; x<=y; x++)
+		{
+			if(y%x==0)
+			{
+				count++;
+			}
+		}
+		if(count==2) {
+			System.out.println("primo");
+		} else {
+			System.out.println(y);
+		}
+		}
+	}
+}
